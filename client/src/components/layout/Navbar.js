@@ -1,27 +1,50 @@
-import React from "react";
+import React, { useContext, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/auth/authContext";
+import BookContext from "../../context/book/bookContext";
 
 const Navbar = ({ title, icon }) => {
+  const authContext = useContext(AuthContext);
+  const bookContext = useContext(BookContext);
+  const { user, isAuthenticated, logout } = authContext;
+  const onLogout = () => {
+    logout();
+    bookContext.clearBooks();
+  };
+  const notGuest = (
+    <Fragment>
+      {/*<li>        <Link to='/about'>About Us</Link> |      </li>*/}
+      <li>Welcome {user && user.name + "!  "} </li>
+      <li>
+        <a href='#!' onClick={onLogout}>
+          <i className='fas fa-sign-out-alt'></i>
+          <span className='hide-sm'> Logout </span>
+        </a>
+      </li>
+    </Fragment>
+  );
+  const guest = (
+    <Fragment>
+      <li>
+        <Link to='/about'>About Us</Link> |
+      </li>
+      <li>
+        <Link to='/register'>Register</Link>|
+      </li>
+      <li>
+        <Link to='/login'>Login</Link>
+      </li>
+    </Fragment>
+  );
   return (
     <div className='navbar bg-primary'>
       <h1>
-        <i className={icon} /> {title}
+        <Link to='/'>
+          <i className={icon} /> {title}
+        </Link>
       </h1>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link> |
-        </li>
-        <li>
-          <Link to='/about'>About</Link>|
-        </li>
-        <li>
-          <Link to='/register'>Register</Link>|
-        </li>
-        <li>
-          <Link to='/login'>Login</Link>
-        </li>
-      </ul>
+      <ul>{isAuthenticated ? notGuest : guest}</ul>
     </div>
   );
 };

@@ -63,6 +63,7 @@ const Bookform = () => {
         name='title'
         value={title}
         onChange={onChange}
+        required
       />
       <input
         type='text'

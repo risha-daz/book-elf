@@ -1,11 +1,17 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, Fragment, useState } from "react";
 import BookContext from "../../../context/book/bookContext";
 import BookItem from "./BookItem";
+import Spinner from "../Spinner";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Booklist = () => {
   const bookContext = useContext(BookContext);
-  if (bookContext.books.length === 0) {
+  const { filter, books, getBooks, loading } = bookContext;
+  useState(() => {
+    getBooks();
+    //eslint-disable-next-line
+  }, []);
+  if (books !== null && books.length === 0 && !loading) {
     return (
       <h4>
         No books! <i className='fas fa-heart-broken'></i>
@@ -14,19 +20,23 @@ const Booklist = () => {
   }
   return (
     <Fragment>
-      <TransitionGroup>
-        {bookContext.filter !== null
-          ? bookContext.filter.map((book) => (
-              <CSSTransition key={book.id} timeout={500} classNames='item'>
-                <BookItem book={book} />
-              </CSSTransition>
-            ))
-          : bookContext.books.map((book) => (
-              <CSSTransition key={book.id} timeout={500} classNames='item'>
-                <BookItem book={book} />
-              </CSSTransition>
-            ))}
-      </TransitionGroup>
+      {books !== null && !loading ? (
+        <TransitionGroup>
+          {filter !== null
+            ? filter.map((book) => (
+                <CSSTransition key={book._id} timeout={500} classNames='item'>
+                  <BookItem book={book} />
+                </CSSTransition>
+              ))
+            : books.map((book) => (
+                <CSSTransition key={book._id} timeout={500} classNames='item'>
+                  <BookItem book={book} />
+                </CSSTransition>
+              ))}
+        </TransitionGroup>
+      ) : (
+        <Spinner />
+      )}
     </Fragment>
   );
 };

@@ -4,13 +4,16 @@ import AlertContext from "../../context/alert/alertContext";
 const Alert = () => {
   const alertContext = useContext(AlertContext);
   const { alerts } = alertContext;
-  console.log(alerts);
   return (
     <Fragment>
       {alerts.length > 0 &&
         alerts.map((alert) => (
-          <div key={alert.id} className={`alert alert-${alert.type}`}>
-            {alert.msg}
+          <div
+            key={alert.id}
+            className={`alert alert-${alert.type}`}
+            style={{ borderRadius: "10px" }}
+          >
+            <i className='fa fa-info-circle'> </i> {alert.msg}
           </div>
         ))}
     </Fragment>

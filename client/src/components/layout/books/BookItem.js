@@ -3,11 +3,11 @@ import BookContext from "../../../context/book/bookContext";
 
 const BookItem = ({ book }) => {
   const bookContext = useContext(BookContext);
-  const { id, title, author, genre, read } = book;
+  const { _id, title, author, genre, read } = book;
   const { clearCurrent, setCurrent, deleteBook } = bookContext;
 
   const del = () => {
-    deleteBook(id);
+    deleteBook(_id);
     clearCurrent();
   };
   const edit = () => {

@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 import BookContext from "./bookContext";
 import bookReducer from "./bookReducer";
 
@@ -11,47 +11,82 @@ import {
   CLEAR_CURRENT,
   CLEAR_FILTER,
   SET_CURRENT,
+  BOOK_ERROR,
+  GET_BOOKS,
+  CLEAR_BOOKS,
 } from "../types";
 
 const BookState = (props) => {
   const initialState = {
-    books: [
-      {
-        id: 1,
-        title: "Harry Potter and the Philosopher's Stone",
-        author: "JK Rowling",
-        genre: "fantasy",
-        read: true,
-      },
-      {
-        id: 2,
-        title: "Harry Potter and the Chamber of Secrets",
-        author: "JK Rowling",
-        genre: "fantasy",
-        read: true,
-      },
-      {
-        id: 3,
-        title: "Percy Jackson and the Lightning Thief",
-        author: "Rick Riordan",
-        genre: "fantasy",
-        read: false,
-      },
-    ],
+    books: null,
+    loading: true,
     current: null,
     filter: null,
+    errors: null,
   };
   const [state, dispatch] = useReducer(bookReducer, initialState);
 
-  //Add Book
-  const addBook = (book) => {
-    book.id = uuidv4();
-    dispatch({ type: ADD_BOOK, payload: book });
+  //Get Books
+  const getBooks = async () => {
+    try {
+      const res = await axios.get("/api/books");
+      dispatch({ type: GET_BOOKS, payload: res.data });
+    } catch (err) {
+      console.log(err.response.data.msg);
+      dispatch({ type: BOOK_ERROR, payload: err.response.data.msg });
+    }
   };
 
+  //Add Book
+  const addBook = async (book) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post("/api/books", book, config);
+      dispatch({ type: ADD_BOOK, payload: res.data });
+    } catch (err) {
+      console.log(err.response.data.errors[0].msg);
+      dispatch({ type: BOOK_ERROR, payload: err.response.data.errors[0].msg });
+    }
+  };
+  //update book
+  const updateBook = async (book) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      await axios.put(`/api/books/${book._id}`, book, config);
+      dispatch({ type: UPDATE_BOOK, payload: book });
+      if (state.filter) {
+        clearFilter();
+      }
+    } catch (err) {
+      console.log(err.response);
+      dispatch({ type: BOOK_ERROR, payload: err.response });
+    }
+  };
   //Delete Book
-  const deleteBook = (id) => {
-    dispatch({ type: DELETE_BOOK, payload: id });
+  const deleteBook = async (id) => {
+    try {
+      await axios.delete(`/api/books/${id}`);
+      dispatch({ type: DELETE_BOOK, payload: id });
+      if (state.filter) {
+        clearFilter();
+      }
+    } catch (err) {
+      console.log(err.response);
+      dispatch({ type: BOOK_ERROR, payload: err.response });
+    }
+  };
+
+  //Clear books
+  const clearBooks = () => {
+    dispatch({ type: CLEAR_BOOKS });
   };
 
   //set current
@@ -61,10 +96,6 @@ const BookState = (props) => {
   //clear current
   const clearCurrent = () => {
     dispatch({ type: CLEAR_CURRENT });
-  };
-  //update contact
-  const updateBook = (book) => {
-    dispatch({ type: UPDATE_BOOK, payload: book });
   };
 
   //filter books
@@ -82,6 +113,9 @@ const BookState = (props) => {
         books: state.books,
         current: state.current,
         filter: state.filter,
+        errors: state.errors,
+        loading: state.loading,
+        getBooks,
         addBook,
         deleteBook,
         setCurrent,
@@ -89,6 +123,7 @@ const BookState = (props) => {
         updateBook,
         filterBooks,
         clearFilter,
+        clearBooks,
       }}
     >
       {props.children}

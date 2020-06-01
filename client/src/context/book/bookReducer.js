@@ -6,14 +6,24 @@ import {
   CLEAR_CURRENT,
   SET_CURRENT,
   CLEAR_FILTER,
+  BOOK_ERROR,
+  GET_BOOKS,
+  CLEAR_BOOKS,
 } from "../types";
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_BOOKS:
+      return {
+        ...state,
+        books: action.payload,
+        loading: false,
+      };
     case ADD_BOOK:
       return {
         ...state,
-        books: [...state.books, action.payload],
+        books: [action.payload, ...state.books],
+        loading: false,
       };
     case SET_CURRENT:
       return {
@@ -42,20 +52,32 @@ export default (state, action) => {
         ...state,
         filter: null,
       };
+    case CLEAR_BOOKS:
+      return {
+        ...state,
+        filter: null,
+        books: null,
+        loading: false,
+        current: null,
+        errors: null,
+      };
     case UPDATE_BOOK:
       return {
         ...state,
         books: state.books.map((book) =>
-          book.id !== action.payload.id ? book : action.payload
+          book._id !== action.payload._id ? book : action.payload
         ),
-
+        loading: false,
         current: null,
       };
     case DELETE_BOOK:
       return {
         ...state,
-        books: state.books.filter((book) => book.id !== action.payload),
+        loading: false,
+        books: state.books.filter((book) => book._id !== action.payload),
       };
+    case BOOK_ERROR:
+      return { ...state, errors: action.payload };
     default:
       return state;
   }
