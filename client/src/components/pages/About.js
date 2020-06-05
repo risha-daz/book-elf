@@ -11,7 +11,7 @@ const About = () => {
         friends' book recommendations, your thoughts and reviews about<br></br>{" "}
         books you've read.
       </p>
-      <span className='badge badge-primary'>Version 1.0.0</span>
+      <span className='badge badge-primary'>Version 1.0.1</span>
     </div>
   );
 };

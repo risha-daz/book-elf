@@ -29,7 +29,7 @@ a {
 }
 
 a:hover {
-  color: #666;
+  color: rgb(75, 72, 72);
 }
 
 ul {
@@ -38,6 +38,10 @@ ul {
 
 img {
   width: 100%;
+}
+
+textarea {
+  resize: vertical;
 }
 
 /* Utilities */
@@ -194,6 +198,17 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+}
+
+.btnstl {
+  display: inline-block;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: opacity 0.2s ease-in;
+  outline: none;
+  border: none;
+  background: none;
 }
 
 .btn-link {

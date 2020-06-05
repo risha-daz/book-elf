@@ -21,6 +21,12 @@ const BookSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  description: {
+    type: String,
+  },
+  rating: {
+    type: Number,
+  },
   date: {
     type: Date,
     default: Date.now,

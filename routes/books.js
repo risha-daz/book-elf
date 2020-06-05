@@ -31,7 +31,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { title, author, genre, read } = req.body;
+    const { title, author, genre, read, description, rating } = req.body;
     try {
       const newBook = new Book({
         user: req.currentUser.id,
@@ -39,7 +39,10 @@ router.post(
         author,
         genre,
         read,
+        description,
+        rating,
       });
+      console.log("object");
       const book = await newBook.save();
       res.json(book);
     } catch (err) {
@@ -53,11 +56,14 @@ router.post(
 // @desc    update a book
 // @access  private
 router.put("/:id", auth, async (req, res) => {
-  const { title, author, genre, read } = req.body;
+  const { title, author, genre, read, description, rating } = req.body;
+  console.log(req.body);
   let updates = {};
   if (title) updates.title = title;
   if (author) updates.author = author;
   if (genre) updates.genre = genre;
+  if (description) updates.description = description;
+  if (rating) updates.rating = rating;
   if (read.toString()) updates.read = read;
 
   try {

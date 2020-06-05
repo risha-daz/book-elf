@@ -44,6 +44,7 @@ const BookState = (props) => {
         "Content-Type": "application/json",
       },
     };
+
     try {
       const res = await axios.post("/api/books", book, config);
       dispatch({ type: ADD_BOOK, payload: res.data });
@@ -59,6 +60,7 @@ const BookState = (props) => {
         "Content-Type": "application/json",
       },
     };
+
     try {
       await axios.put(`/api/books/${book._id}`, book, config);
       dispatch({ type: UPDATE_BOOK, payload: book });
@@ -107,6 +109,39 @@ const BookState = (props) => {
     dispatch({ type: CLEAR_FILTER });
   };
 
+  //Autofill fields
+  const autofill = async (title) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    if (title.key) {
+      console.log("key recieved");
+    }
+    try {
+      const res = await axios.post("/api/google", title, config);
+      try {
+        const author = res.data.items[0].volumeInfo.authors[0] || "";
+        const desc = res.data.items[0].volumeInfo.description || "";
+        const tit = res.data.items[0].volumeInfo.title || "";
+        const rat = res.data.items[0].volumeInfo.averageRating || 0;
+
+        return { author, desc, tit, rat };
+      } catch (err) {
+        return {
+          author: "not found",
+          desc: "not found",
+          tit: "not found",
+          rat: 1,
+        };
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: BOOK_ERROR, payload: err });
+    }
+  };
+
   return (
     <BookContext.Provider
       value={{
@@ -124,6 +159,7 @@ const BookState = (props) => {
         filterBooks,
         clearFilter,
         clearBooks,
+        autofill,
       }}
     >
       {props.children}

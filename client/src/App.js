@@ -1,10 +1,12 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/routing/PrivateRoute";
+import BookRoute from "./components/routing/BookRoute";
 import Navbar from "./components/layout/Navbar";
 import Alert from "./components/layout/Alert";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
+import Book from "./components/pages/Book";
 import Register from "./components/layout/auth/Register";
 import Login from "./components/layout/auth/Login";
 import BookState from "./context/book/BookState";
@@ -29,6 +31,7 @@ function App() {
                 <Alert />
                 <Switch>
                   <PrivateRoute exact path='/' component={Home} />
+                  <BookRoute exact path='/book' component={Book} />
                   <Route exact path='/about' component={About} />
                   <Route exact path='/register' component={Register} />
                   <Route exact path='/login' component={Login} />
