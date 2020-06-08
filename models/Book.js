@@ -27,6 +27,14 @@ const BookSchema = new Schema({
   rating: {
     type: Number,
   },
+  recommendedto: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "users",
+  },
+  recommendedby: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "users",
+  },
   date: {
     type: Date,
     default: Date.now,

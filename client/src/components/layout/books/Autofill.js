@@ -22,7 +22,7 @@ const Autofill = (props) => {
       <div className='btn btn-light btn-sm' onClick={props.onAutofill}>
         Autofill
       </div>
-      {/*
+
       <div className='btn btn-sm' onClick={showAl}>
         <i className='fas fa-info' />
       </div>
@@ -33,8 +33,8 @@ const Autofill = (props) => {
 
       <div className='btn btn-primary btn-sm' onClick={nextRes}>
         Next result
-        <i class='fas fa-step-forward' />
-      </div>*/}
+        <i className='fas fa-step-forward' />
+      </div>
     </Fragment>
   );
 };

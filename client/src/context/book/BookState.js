@@ -14,6 +14,8 @@ import {
   BOOK_ERROR,
   GET_BOOKS,
   CLEAR_BOOKS,
+  CLEAR_BOOK_PAGE,
+  BOOK_DETAILS_RECIEVED,
 } from "../types";
 
 const BookState = (props) => {
@@ -23,6 +25,7 @@ const BookState = (props) => {
     current: null,
     filter: null,
     errors: null,
+    bookpage: null,
   };
   const [state, dispatch] = useReducer(bookReducer, initialState);
 
@@ -97,6 +100,7 @@ const BookState = (props) => {
   };
   //clear current
   const clearCurrent = () => {
+    console.log("from");
     dispatch({ type: CLEAR_CURRENT });
   };
 
@@ -142,6 +146,14 @@ const BookState = (props) => {
     }
   };
 
+  //set current
+  const setBookpage = (book) => {
+    dispatch({ type: BOOK_DETAILS_RECIEVED, payload: book });
+  };
+  //clear current
+  const clearBookpage = () => {
+    dispatch({ type: CLEAR_BOOK_PAGE });
+  };
   return (
     <BookContext.Provider
       value={{
@@ -150,6 +162,7 @@ const BookState = (props) => {
         filter: state.filter,
         errors: state.errors,
         loading: state.loading,
+        bookpage: state.bookpage,
         getBooks,
         addBook,
         deleteBook,
@@ -159,6 +172,8 @@ const BookState = (props) => {
         filterBooks,
         clearFilter,
         clearBooks,
+        setBookpage,
+        clearBookpage,
         autofill,
       }}
     >

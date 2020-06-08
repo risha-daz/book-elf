@@ -81,13 +81,21 @@ const Bookform = () => {
   const toggleDesc = (e) => {
     setBook({ ...book, add_desc: !add_desc });
   };
-  const clear = () => {
+  const clear = (e) => {
+    e.preventDefault();
     clearCurrent();
+    setBook({
+      title: "",
+      author: "",
+      genre: "",
+      read: false,
+      description: "",
+      rating: 1,
+    });
   };
   const onRate = (e) => {
     e.preventDefault();
     let val = e.target.name;
-
     setBook({ ...book, rating: val });
   };
 
@@ -171,7 +179,9 @@ const Bookform = () => {
         <option value='Mystery' />
      </datalist> */}
       <select name='genre' value={genre} onChange={onChange}>
-        <option value=''>Add Genre..</option>
+        <option value='' disabled>
+          Add Genre..
+        </option>
         <option value='Fiction'>Fiction</option>
         <option value='Non-Fiction'>Non-Fiction</option>
         <option value='Fantasy'>Fantasy</option>
@@ -203,12 +213,6 @@ const Bookform = () => {
         )}
       </div>{" "}
       Read the book
-      {/*<input
-        type='checkbox'
-        name='read'
-        onChange={toggleRead}
-        checked={read === true ? true : ""}
-      />*/}
       <fieldset>
         <legend>
           <h4>Reviews:</h4>
@@ -284,11 +288,9 @@ const Bookform = () => {
           className='btn btn-primary btn-block'
         />
       </div>
-      {current && (
-        <button className='btn btn-light btn-block' onClick={clear}>
-          Clear
-        </button>
-      )}
+      <button className='btn btn-light btn-block' onClick={clear}>
+        Clear
+      </button>
     </form>
   );
 };

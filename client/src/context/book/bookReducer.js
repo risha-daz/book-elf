@@ -9,6 +9,8 @@ import {
   BOOK_ERROR,
   GET_BOOKS,
   CLEAR_BOOKS,
+  CLEAR_BOOK_PAGE,
+  BOOK_DETAILS_RECIEVED,
 } from "../types";
 
 export default (state, action) => {
@@ -30,10 +32,20 @@ export default (state, action) => {
         ...state,
         current: action.payload,
       };
+    case BOOK_DETAILS_RECIEVED:
+      return {
+        ...state,
+        bookpage: action.payload,
+      };
     case CLEAR_CURRENT:
       return {
         ...state,
         current: null,
+      };
+    case CLEAR_BOOK_PAGE:
+      return {
+        ...state,
+        bookpage: null,
       };
     case FILTER_BOOKS:
       return {

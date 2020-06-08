@@ -20,6 +20,10 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  friends: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "users",
+  },
 });
 
 module.exports = mongoose.model("user", UserSchema);

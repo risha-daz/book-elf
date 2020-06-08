@@ -18,3 +18,5 @@ export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGOUT = "LOGOUT";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const BOOK_DETAILS_RECIEVED = "BOOK_DETAILS_RECIEVED";
+export const CLEAR_BOOK_PAGE = "CLEAR_BOOK_PAGE";

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BookItem = ({ book }) => {
   const bookContext = useContext(BookContext);
   const { _id, title, author, genre, read, description, rating } = book;
-  const { clearCurrent, setCurrent, deleteBook, getBookInfo } = bookContext;
+  const { clearCurrent, setCurrent, deleteBook, setBookpage } = bookContext;
 
   const [descr, setDescr] = useState({ full: false });
   const { full } = descr;
@@ -21,7 +21,8 @@ const BookItem = ({ book }) => {
   };
 
   const getBook = (e) => {
-    getBookInfo(_id);
+    e.preventDefault();
+    setBookpage(book);
   };
   return (
     <div className='card bg-light'>
@@ -96,11 +97,10 @@ const BookItem = ({ book }) => {
         <button className='btn btn-danger btn-sm' onClick={del}>
           <i className='far fa-trash-alt'></i>
         </button>
-        {/*<Link to={`/book/${_id}`}>
-          <div className='btn btn-sm btn-primary' onClick={getBook}>
-            <i class='fas fa-book-open'></i>
-          </div>
-      </Link>*/}
+        {/*<i className="fas fa-users" /> */}
+        <button className='btn btn-sm btn-primary' onClick={getBook}>
+          <i className='fas fa-book-open'></i>
+        </button>
       </p>
     </div>
   );
