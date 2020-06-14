@@ -7,6 +7,7 @@ import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Register from "./components/layout/auth/Register";
 import Login from "./components/layout/auth/Login";
+import Homealt from "./components/pages/Homealt";
 import BookState from "./context/book/BookState";
 import AuthState from "./context/auth/AuthState";
 import AlertState from "./context/alert/AlertState";

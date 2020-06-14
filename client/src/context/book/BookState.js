@@ -44,7 +44,7 @@ const BookState = (props) => {
   const addBook = async (book) => {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     };
 
@@ -52,15 +52,15 @@ const BookState = (props) => {
       const res = await axios.post("/api/books", book, config);
       dispatch({ type: ADD_BOOK, payload: res.data });
     } catch (err) {
-      console.log(err.response.data.errors[0].msg);
-      dispatch({ type: BOOK_ERROR, payload: err.response.data.errors[0].msg });
+      console.log(err.response);
+      dispatch({ type: BOOK_ERROR, payload: err.response });
     }
   };
   //update book
   const updateBook = async (book) => {
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     };
 
@@ -120,9 +120,7 @@ const BookState = (props) => {
         "Content-Type": "application/json",
       },
     };
-    if (title.key) {
-      console.log("key recieved");
-    }
+
     try {
       const res = await axios.post("/api/google", title, config);
       try {

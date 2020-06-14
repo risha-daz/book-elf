@@ -18,8 +18,8 @@ const BookSchema = new Schema({
     type: String,
   },
   read: {
-    type: Boolean,
-    default: false,
+    type: String,
+    default: "Not Read",
   },
   description: {
     type: String,
@@ -34,6 +34,9 @@ const BookSchema = new Schema({
   recommendedby: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: "users",
+  },
+  cover: {
+    type: String,
   },
   date: {
     type: Date,

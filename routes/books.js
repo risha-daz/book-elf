@@ -5,6 +5,31 @@ const Book = require("../models/Book");
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
+const multer = require("multer");
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads/");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname);
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb(new Error("Unsupported file type"), false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 15,
+  },
+  fileFilter: fileFilter,
+});
 // @route   GET ./api/books/
 // @desc    Get books
 // @access  private
@@ -25,8 +50,14 @@ router.get("/", auth, async (req, res) => {
 // @access  private
 router.post(
   "/",
-  [auth, [check("title", "Please enter a title").not().isEmpty()]],
+  [
+    auth,
+    upload.any(),
+    [check("title", "Please enter a title").not().isEmpty()],
+  ],
   async (req, res) => {
+    console.log(req.file);
+    const cover = req.file.filename;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
@@ -41,8 +72,9 @@ router.post(
         read,
         description,
         rating,
+        cover,
       });
-      console.log("object");
+
       const book = await newBook.save();
       res.json(book);
     } catch (err) {
@@ -55,7 +87,8 @@ router.post(
 // @route   PUT ./api/books/:id
 // @desc    update a book
 // @access  private
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", [auth, upload.single("coverimage")], async (req, res) => {
+  const cover = req.file;
   const { title, author, genre, read, description, rating } = req.body;
   console.log(req.body);
   let updates = {};
@@ -65,6 +98,7 @@ router.put("/:id", auth, async (req, res) => {
   if (description) updates.description = description;
   if (rating) updates.rating = rating;
   if (read.toString()) updates.read = read;
+  if (cover) updates.cover = cover.filename;
 
   try {
     let book = await Book.findById(req.params.id);

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st3{opacity:0.4;}
+	.st4{clip-path:url(#SVGID_4_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st5{clip-path:url(#SVGID_6_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st6{clip-path:url(#SVGID_8_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st7{clip-path:url(#SVGID_10_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st8{clip-path:url(#SVGID_12_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st9{clip-path:url(#SVGID_14_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st10{clip-path:url(#SVGID_16_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st11{clip-path:url(#SVGID_18_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st12{clip-path:url(#SVGID_20_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st13{clip-path:url(#SVGID_22_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st14{clip-path:url(#SVGID_24_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st15{clip-path:url(#SVGID_26_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st16{clip-path:url(#SVGID_28_);fill:none;stroke:#000000;stroke-width:0.25;stroke-miterlimit:10;}
+	.st17{clip-path:url(#SVGID_30_);}
+	.st18{display:none;}
+	.st19{display:inline;opacity:0.2;enable-background:new    ;}
+	.st20{fill:none;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}
+	.st21{fill:none;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
+	.st22{display:inline;}
+	.st23{clip-path:url(#SVGID_32_);}
+	.st24{clip-path:url(#SVGID_36_);}
+	.st25{clip-path:url(#SVGID_40_);}
+</style>
+<symbol  id="material_x5F_system_x5F_icon_x5F_border" viewBox="-24 -24 48 48">
+	<rect x="-24" y="-24" class="st0" width="48" height="48"/>
+</symbol>
+<symbol  id="material_x5F_system_x5F_icon_x5F_grid" viewBox="-24 -24 48 48">
+	<g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_1_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_2_">
+					<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+				</clipPath>
+				<g class="st1">
+					<g>
+						<line class="st2" x1="-22" y1="-24" x2="-22" y2="24"/>
+						<line class="st2" x1="-20" y1="-24" x2="-20" y2="24"/>
+						<line class="st2" x1="-18" y1="-24" x2="-18" y2="24"/>
+						<line class="st2" x1="-16" y1="-24" x2="-16" y2="24"/>
+						<line class="st2" x1="-14" y1="-24" x2="-14" y2="24"/>
+						<line class="st2" x1="-12" y1="-24" x2="-12" y2="24"/>
+						<line class="st2" x1="-10" y1="-24" x2="-10" y2="24"/>
+						<line class="st2" x1="-8" y1="-24" x2="-8" y2="24"/>
+						<line class="st2" x1="-6" y1="-24" x2="-6" y2="24"/>
+						<line class="st2" x1="-4" y1="-24" x2="-4" y2="24"/>
+						<line class="st2" x1="-2" y1="-24" x2="-2" y2="24"/>
+						<line class="st2" x1="0" y1="-24" x2="0" y2="24"/>
+						<line class="st2" x1="2" y1="-24" x2="2" y2="24"/>
+						<line class="st2" x1="4" y1="-24" x2="4" y2="24"/>
+						<line class="st2" x1="6" y1="-24" x2="6" y2="24"/>
+						<line class="st2" x1="8" y1="-24" x2="8" y2="24"/>
+						<line class="st2" x1="10" y1="-24" x2="10" y2="24"/>
+						<line class="st2" x1="12" y1="-24" x2="12" y2="24"/>
+						<line class="st2" x1="14" y1="-24" x2="14" y2="24"/>
+						<line class="st2" x1="16" y1="-24" x2="16" y2="24"/>
+						<line class="st2" x1="18" y1="-24" x2="18" y2="24"/>
+						<line class="st2" x1="20" y1="-24" x2="20" y2="24"/>
+						<line class="st2" x1="22" y1="-24" x2="22" y2="24"/>
+					</g>
+					<g>
+						<line class="st2" x1="-24" y1="22" x2="24" y2="22"/>
+						<line class="st2" x1="-24" y1="20" x2="24" y2="20"/>
+						<line class="st2" x1="-24" y1="18" x2="24" y2="18"/>
+						<line class="st2" x1="-24" y1="16" x2="24" y2="16"/>
+						<line class="st2" x1="-24" y1="14" x2="24" y2="14"/>
+						<line class="st2" x1="-24" y1="12" x2="24" y2="12"/>
+						<line class="st2" x1="-24" y1="10" x2="24" y2="10"/>
+						<line class="st2" x1="-24" y1="8" x2="24" y2="8"/>
+						<line class="st2" x1="-24" y1="6" x2="24" y2="6"/>
+						<line class="st2" x1="-24" y1="4" x2="24" y2="4"/>
+						<line class="st2" x1="-24" y1="2" x2="24" y2="2"/>
+						<line class="st2" x1="-24" y1="0" x2="24" y2="0"/>
+						<line class="st2" x1="-24" y1="-2" x2="24" y2="-2"/>
+						<line class="st2" x1="-24" y1="-4" x2="24" y2="-4"/>
+						<line class="st2" x1="-24" y1="-6" x2="24" y2="-6"/>
+						<line class="st2" x1="-24" y1="-8" x2="24" y2="-8"/>
+						<line class="st2" x1="-24" y1="-10" x2="24" y2="-10"/>
+						<line class="st2" x1="-24" y1="-12" x2="24" y2="-12"/>
+						<line class="st2" x1="-24" y1="-14" x2="24" y2="-14"/>
+						<line class="st2" x1="-24" y1="-16" x2="24" y2="-16"/>
+						<line class="st2" x1="-24" y1="-18" x2="24" y2="-18"/>
+						<line class="st2" x1="-24" y1="-20" x2="24" y2="-20"/>
+						<line class="st2" x1="-24" y1="-22" x2="24" y2="-22"/>
+					</g>
+					<g>
+						<path d="M23.8,23.8v-47.5h-47.5v47.5H23.8 M24,24h-48v-48h48V24L24,24z"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</symbol>
+<symbol  id="material_x5F_system_x5F_icon_x5F_keylines" viewBox="-24 -24 48 48">
+	<g class="st3">
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_3_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_4_">
+					<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st4" x1="0" y1="24" x2="0" y2="-24"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_5_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_6_">
+					<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st5" x1="24" y1="0" x2="-24" y2="0"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_7_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_8_">
+					<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st6" x1="24" y1="8" x2="-24" y2="8"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_9_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_10_">
+					<use xlink:href="#SVGID_9_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st7" x1="24" y1="-8" x2="-24" y2="-8"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_11_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_12_">
+					<use xlink:href="#SVGID_11_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st8" x1="8" y1="-24" x2="8" y2="24"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_13_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_14_">
+					<use xlink:href="#SVGID_13_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st9" x1="-8" y1="-24" x2="-8" y2="24"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_15_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_16_">
+					<use xlink:href="#SVGID_15_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st10" x1="23.8" y1="23.8" x2="-23.8" y2="-23.8"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_17_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_18_">
+					<use xlink:href="#SVGID_17_"  style="overflow:visible;"/>
+				</clipPath>
+				<line class="st11" x1="-23.8" y1="23.8" x2="23.8" y2="-23.8"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_19_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_20_">
+					<use xlink:href="#SVGID_19_"  style="overflow:visible;"/>
+				</clipPath>
+				<path class="st12" d="M0,10c-5.5,0-10-4.5-10-10s4.5-10,10-10S10-5.5,10,0S5.5,10,0,10z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_21_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_22_">
+					<use xlink:href="#SVGID_21_"  style="overflow:visible;"/>
+				</clipPath>
+				<path class="st13" d="M0,20c-11.1,0-20-8.9-20-20s8.9-20,20-20s20,9,20,20S11,20,0,20z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_23_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_24_">
+					<use xlink:href="#SVGID_23_"  style="overflow:visible;"/>
+				</clipPath>
+				<path class="st14" d="M14,18h-28c-2.2,0-4-1.8-4-4v-28c0-2.2,1.8-4,4-4h28c2.2,0,4,1.8,4,4v28C18,16.2,16.2,18,14,18z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_25_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_26_">
+					<use xlink:href="#SVGID_25_"  style="overflow:visible;"/>
+				</clipPath>
+				<path class="st15" d="M16,16h-32c-2.2,0-4-1.8-4-4v-24c0-2.2,1.8-4,4-4h32c2.2,0,4,1.8,4,4v24C20,14.2,18.2,16,16,16z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_27_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_28_">
+					<use xlink:href="#SVGID_27_"  style="overflow:visible;"/>
+				</clipPath>
+				<path class="st16" d="M16-16v32c0,2.2-1.8,4-4,4h-24c-2.2,0-4-1.8-4-4v-32c0-2.2,1.8-4,4-4h24C14.2-20,16-18.2,16-16z"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<defs>
+					<rect id="SVGID_29_" x="-24" y="-24" width="48" height="48"/>
+				</defs>
+				<clipPath id="SVGID_30_">
+					<use xlink:href="#SVGID_29_"  style="overflow:visible;"/>
+				</clipPath>
+				<g class="st17">
+					<path d="M23.8,23.8v-47.5h-47.5v47.5H23.8 M24,24h-48v-48h48V24L24,24z"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</symbol>
+<g class="st18">
+	<path id="Rectangle" class="st19" d="M19,21H5c-1.1,0-2-0.9-2-2V5c0-1.1,0.9-2,2-2h14c1.1,0,2,0.9,2,2v14C21,20.1,20.1,21,19,21z"
+		/>
+</g>
+<g id="icon">
+	<path class="st18" d="M11.8,14.6c0-1.4,2-3.3,4.3-4.3C19,9,21.9,8.9,23.3,8.9c0,3.8,0,9.1,0,13c-2.9,0-3.9,1.4-7.2,1.4
+		c-2.9,0-4.3,0-4.3,1.4C11.8,21.8,11.8,17,11.8,14.6z"/>
+	<path class="st20" d="M11.8,17.5c0.3-0.8,1-2.8,2.9-4.3c2.7-2.2,5.7-2.2,6.5-2.2"/>
+	<path class="st20" d="M11.8,17.5c-0.3-0.8-1-2.8-2.9-4.3C6.2,10.9,3.2,11,2.4,11"/>
+	<path d="M20.4,21.8c0.5-3.4,1-6.7,1.4-10.1c-1-0.1-4.2-0.5-7.2,1.4c-1.5,0.9-2.4,2.1-2.9,2.9c0,2.4,0,4.8,0,7.2
+		c1-0.5,2.4-1.1,4.3-1.4C17.9,21.5,19.4,21.7,20.4,21.8z"/>
+	<path d="M3.3,22c-0.5-3.4-1.1-6.7-1.7-10.1c1-0.2,4.1-0.6,7.2,1.3c1.5,0.9,2.4,2,2.9,2.8c0.1,2.4,0.1,4.8,0.2,7.2
+		c-1-0.5-2.4-1.1-4.3-1.4C5.8,21.7,4.3,21.8,3.3,22z"/>
+	<path class="st21" d="M6.8,9.6C7.5,10,9,10.9,11.1,11c2.9,0.2,5-1,5.8-1.4"/>
+	<g>
+		<path d="M9,2L9,2c0.3,0,0.7,0,1,0.1c2.6,0.5,4.5,3.1,4.7,6c-2,0.4-3.5,0.6-4.7,0.6c-0.6,0-1-0.1-1.2-0.1c0-0.2,0-0.4,0-0.6
+			C8.9,7.4,9,6.8,9,6.4c0.2-1.2,0.4-2.3-0.3-3.5c0-0.1-0.1-0.2-0.1-0.2C8.4,2.5,8.2,2.3,7.9,2.1C8.3,2,8.6,2,9,2 M9,0.5
+			c-2.2,0-4.4,1.1-5.9,3C4.3,3.1,5.2,3,5.9,3C7,3,7.3,3.3,7.4,3.5c0,0,0,0,0,0.1c0.6,1.1,0.1,2.2,0,4.3c-0.1,0.8-0.1,1.3,0,1.4
+			c0.2,0.4,0.9,0.8,2.6,0.8c1.3,0,3.2-0.2,6.1-0.8c0.4-4.2-2.3-7.9-5.8-8.6C9.8,0.6,9.4,0.5,9,0.5L9,0.5z"/>
+	</g>
+</g>
+<g id="border" class="st18">
+	<g class="st22">
+		<g>
+			<defs>
+				<rect id="SVGID_31_" width="24" height="24"/>
+			</defs>
+			<clipPath id="SVGID_32_">
+				<use xlink:href="#SVGID_31_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st23">
+				<g>
+					<defs>
+						<rect id="SVGID_33_" width="24" height="24"/>
+					</defs>
+					<clipPath id="SVGID_34_">
+						<use xlink:href="#SVGID_33_"  style="overflow:visible;"/>
+					</clipPath>
+					<g style="clip-path:url(#SVGID_34_);">
+						
+							<use xlink:href="#material_x5F_system_x5F_icon_x5F_border"  width="48" height="48" id="XMLID_2_" x="-24" y="-24" transform="matrix(0.5 0 0 -0.5 12 12)" style="overflow:visible;"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="grid" class="st18">
+	<g class="st22">
+		<g>
+			<defs>
+				<rect id="SVGID_35_" width="24" height="24"/>
+			</defs>
+			<clipPath id="SVGID_36_">
+				<use xlink:href="#SVGID_35_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st24">
+				<g>
+					<defs>
+						<rect id="SVGID_37_" width="24" height="24"/>
+					</defs>
+					<clipPath id="SVGID_38_">
+						<use xlink:href="#SVGID_37_"  style="overflow:visible;"/>
+					</clipPath>
+					<g style="clip-path:url(#SVGID_38_);">
+						
+							<use xlink:href="#material_x5F_system_x5F_icon_x5F_grid"  width="48" height="48" id="XMLID_1_" x="-24" y="-24" transform="matrix(0.5 0 0 -0.5 12 12)" style="overflow:visible;"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="keylines" class="st18">
+	<g class="st22">
+		<g>
+			<defs>
+				<rect id="SVGID_39_" x="-3.9" y="-4" width="31.9" height="31.9"/>
+			</defs>
+			<clipPath id="SVGID_40_">
+				<use xlink:href="#SVGID_39_"  style="overflow:visible;"/>
+			</clipPath>
+			<g class="st25">
+				<g>
+					<defs>
+						<rect id="SVGID_41_" x="-3.9" y="-4" width="31.9" height="31.9"/>
+					</defs>
+					<clipPath id="SVGID_42_">
+						<use xlink:href="#SVGID_41_"  style="overflow:visible;"/>
+					</clipPath>
+					<g style="clip-path:url(#SVGID_42_);">
+						
+							<use xlink:href="#material_x5F_system_x5F_icon_x5F_keylines"  width="48" height="48" id="XMLID_3_" x="-24" y="-24" transform="matrix(0.6649 0 0 -0.6649 12.0212 11.9788)" style="overflow:visible;"/>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

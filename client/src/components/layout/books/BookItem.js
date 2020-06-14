@@ -1,14 +1,56 @@
 import React, { useContext, useState } from "react";
 import BookContext from "../../../context/book/bookContext";
 import { Link } from "react-router-dom";
+import NoImage from "../../../no_image.jpg";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  CardActionArea,
+  Icon,
+  Box,
+  Avatar,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Chip,
+  CardHeader,
+  IconButton,
+  Collapse,
+  ListItemText,
+  CardMedia,
+} from "@material-ui/core";
+import Rating from "@material-ui/lab/Rating";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  readStatus: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+  },
+  boxStyle: {
+    minHeight: 360,
+  },
+  cardStyle: {
+    backgroundColor: "#eceace",
+    maxWidth: 900,
+    display: "flex",
+  },
+  cover: {
+    width: 188,
+  },
+}));
 
 const BookItem = ({ book }) => {
+  const styles = useStyles();
   const bookContext = useContext(BookContext);
-  const { _id, title, author, genre, read, description, rating } = book;
+  const { _id, title, author, genre, read, description, rating, cover } = book;
   const { clearCurrent, setCurrent, deleteBook, setBookpage } = bookContext;
 
-  const [descr, setDescr] = useState({ full: false });
-  const { full } = descr;
+  const [full, setFull] = useState(false);
+
   const del = () => {
     deleteBook(_id);
     clearCurrent();
@@ -17,7 +59,7 @@ const BookItem = ({ book }) => {
     setCurrent(book);
   };
   const fullDesc = (e) => {
-    setDescr({ ...descr, full: !full });
+    setFull(!full);
   };
 
   const getBook = (e) => {
@@ -25,84 +67,69 @@ const BookItem = ({ book }) => {
     setBookpage(book);
   };
   return (
-    <div className='card bg-light'>
-      <h3 className='text-primary text-left'>
-        {title}
-        {"  "}
-        <span
-          className={
-            "badge " + (read === true ? "badge-success" : "badge-primary")
-          }
-          style={{ float: "right" }}
-        >
-          {read === true ? "Read" : "Not Read"}
-        </span>
-      </h3>
-
-      <ul>
-        {author && (
-          <li>
-            <i className='fas fa-pen-nib' />
-            {"  "}
-            {author}
-          </li>
-        )}
-        {genre && (
-          <li>
-            <i className='fas fa-list-ul' />
-            {"  "}
-            {genre}
-          </li>
-        )}
-        {description && (
-          <li>
-            <i className='far fa-comment-dots' />
-            {"  "}
-            {description.length > 180 && !full
-              ? description.substring(0, 180) + "..."
-              : description}
-            {description.length > 180 && (
-              <button
-                onClick={fullDesc}
-                style={{
-                  float: "right",
-                  cursor: "pointer",
-                  outline: "none",
-                  border: "none",
-                  background: "none",
-                }}
-              >
-                {!full ? (
-                  <i className='fas fa-ellipsis-h' />
-                ) : (
-                  <i class='fas fa-ellipsis-v' />
-                )}
-              </button>
+    <Card className={styles.cardStyle}>
+      <CardMedia
+        className={styles.cover}
+        image={cover ? `uploads/${cover}` : NoImage}
+        title='Default Image'
+      />
+      <CardActionArea onClick={fullDesc}>
+        <CardContent>
+          <Chip
+            label={
+              read.toString() === "false"
+                ? "Not Read"
+                : read.toString() === "true"
+                ? "Read"
+                : "Reading"
+            }
+            className={styles.readStatus}
+            color='secondary'
+          />
+          <List disablePadding={true}>
+            <ListItem divider>
+              <ListItemText
+                primary={<Typography variant='h5'>{title}</Typography>}
+                secondary={rating && <Rating value={rating} readOnly />}
+              />
+            </ListItem>
+            {(author || genre) && (
+              <ListItem>
+                <ListItemText primary={author || ""} secondary={genre || ""} />
+              </ListItem>
             )}
-          </li>
-        )}
-      </ul>
-      {rating && (
-        <span className='badge badge-primary' style={{ float: "right" }}>
-          {rating}
-          <i className='fas fa-star' />
-        </span>
-      )}
-      <p>
-        <a href='#bookform'>
-          <button className='btn btn-dark btn-sm' onClick={edit}>
-            <i className='fas fa-pen'></i>
-          </button>
-        </a>
-        <button className='btn btn-danger btn-sm' onClick={del}>
-          <i className='far fa-trash-alt'></i>
-        </button>
-        {/*<i className="fas fa-users" /> */}
-        <button className='btn btn-sm btn-primary' onClick={getBook}>
-          <i className='fas fa-book-open'></i>
-        </button>
-      </p>
-    </div>
+
+            {description && (
+              <ListItem>
+                <Collapse in={full} timeout='auto'>
+                  {description}
+                </Collapse>
+              </ListItem>
+            )}
+          </List>
+        </CardContent>
+      </CardActionArea>
+
+      <CardActions>
+        <List>
+          <ListItem>
+            <IconButton onClick={edit}>
+              <i className='fas fa-pen'></i>
+            </IconButton>
+          </ListItem>
+          <ListItem>
+            <IconButton onClick={del}>
+              <i className='far fa-trash-alt'></i>
+            </IconButton>
+          </ListItem>
+          <ListItem>
+            <IconButton onClick={getBook}>
+              <i className='fas fa-book-open'></i>
+            </IconButton>
+          </ListItem>
+        </List>
+      </CardActions>
+    </Card>
   );
 };
 
