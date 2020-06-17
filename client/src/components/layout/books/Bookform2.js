@@ -9,10 +9,10 @@ import {
   Icon,
   Collapse,
   Card,
+  Box,
   CardActionArea,
   CardContent,
-  Avatar,
-  ExpansionPanelDetails,
+  Tooltip,
   MenuItem,
   FormControl,
   Container,
@@ -27,7 +27,7 @@ import {
   FormControlLabel,
   FormLabel,
 } from "@material-ui/core";
-import ImageUpload from "./ImageUpload";
+import NoImage from "../../../no_image.jpg";
 import Rating from "@material-ui/lab/Rating";
 import BookContext from "../../../context/book/bookContext";
 import { useTheme } from "@material-ui/core/styles";
@@ -45,11 +45,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     backgroundColor: "#eceace",
   },
+  input: { display: "none" },
   minorContainer: {
     margin: 20,
   },
   majorContainer: {
     display: "flex",
+  },
+  mobileContainer: {
+    display: "flex",
+    flexDirection: "column",
   },
   labelContainer: {
     textAlign: "center",
@@ -61,10 +66,11 @@ const Bookform2 = () => {
   const theme = useTheme();
   const styles = useStyles();
   const [open, setOpen] = useState(false);
+  const [file, setFile] = useState();
   const handleClickOpen = () => {
     setOpen(!open);
   };
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const smallScreen = useMediaQuery(theme.breakpoints.down("xs"));
   const handleClose = () => {
     setOpen(false);
     clearCurrent();
@@ -89,12 +95,17 @@ const Bookform2 = () => {
     genre_custom: "",
     description: "",
     rating: 0.5,
-    image: null,
   });
   useEffect(() => {
     if (current) {
       setBook({ ...current });
+      if (bookContext.current.cover) {
+        setFile(bookContext.current.cover);
+      } else {
+        setFile(null);
+      }
     } else {
+      setFile(null);
       setBook({
         title: "",
         author: "",
@@ -102,7 +113,6 @@ const Bookform2 = () => {
         read: "false",
         description: "",
         rating: 1,
-        image: null,
       });
     }
   }, [bookContext, current]);
@@ -114,7 +124,6 @@ const Bookform2 = () => {
     read,
     genre_custom,
     description,
-    image,
     rating,
   } = book;
 
@@ -122,24 +131,38 @@ const Bookform2 = () => {
     setBook({ ...book, [e.target.name]: e.target.value });
   };
 
-  const onUploadImage = (file) => {
-    setBook({ ...book, image: file });
+  const imgUploaded = async (e) => {
+    setFile(e.target.files[0]);
+
+    let formData = new FormData();
+    formData.set("coverimage", e.target.files[0]);
+    const coverurl = await bookContext.uploadImage(formData);
+    console.log(coverurl);
+    setFile(`uploads/${coverurl}`);
   };
 
   const onAutofill = async (e) => {
     const search = await autofill({ title });
-    setBook({
-      ...book,
-      title: search.tit,
-      author: search.author,
-      description: search.desc,
-      rating: search.rat,
-    });
+    try {
+      setBook({
+        ...book,
+        title: search.tit,
+        author: search.author,
+        description: search.desc,
+        rating: search.rat,
+      });
+      if (search.thumb) {
+        setFile(search.thumb);
+      }
+    } catch (err) {
+      clear();
+    }
   };
 
   const clear = (e) => {
     e.preventDefault();
     clearCurrent();
+    setFile(null);
     setBook({
       title: "",
       author: "",
@@ -147,28 +170,35 @@ const Bookform2 = () => {
       read: false,
       description: "",
       rating: 1,
-      image: null,
     });
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     let gen = genre === "Custom" ? genre_custom : genre;
-    let formData = new FormData();
-    formData.set("title", title);
-    formData.set("author", author);
-    formData.set("genre", gen);
-    formData.set("read", read);
-    formData.set("description", description);
-    formData.set("rating", rating);
-    formData.set("coverimage", image);
-
     if (current === null) {
-      bookContext.addBook(formData);
+      bookContext.addBook({
+        title,
+        author,
+        genre: gen,
+        read,
+        description,
+        rating,
+        cover: file,
+      });
     } else {
-      formData.set("_id", current._id);
-      bookContext.updateBook(formData);
+      bookContext.updateBook({
+        _id: current._id,
+        title,
+        author,
+        genre: gen,
+        read,
+        description,
+        rating,
+        cover: file,
+      });
     }
+    setFile(null);
     setBook({
       title: "",
       author: "",
@@ -176,7 +206,6 @@ const Bookform2 = () => {
       read: false,
       description: "",
       rating: 1,
-      image: null,
     });
   };
   return (
@@ -190,10 +219,46 @@ const Bookform2 = () => {
       </CardActionArea>
       <CardContent>
         <Collapse in={open} timeout='auto' unmountOnExit>
-          <Container className={styles.majorContainer}>
-            <ImageUpload imagevalue={image} onUploadImage={onUploadImage} />
-            <Divider orientation='vertical' flexItem />
-            <Container maxWidth='md' className={styles.minorContainer}>
+          <Box
+            className={
+              smallScreen ? styles.mobileContainer : styles.majorContainer
+            }
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: "10px",
+                textAlign: "center",
+              }}
+            >
+              <img
+                src={file || NoImage}
+                alt='no image'
+                style={{ width: "188px", margin: "10px" }}
+              />
+
+              <input
+                accept='image/*'
+                id='cover-upload'
+                className={styles.input}
+                type='file'
+                onChange={imgUploaded}
+              />
+              <label htmlFor='cover-upload'>
+                <Button variant='contained' color='primary'>
+                  Upload
+                </Button>
+              </label>
+              {/*<Button color='secondary'>
+                <Icon>image_not_supported</Icon> Remove Image
+              </Button>*/}
+            </div>{" "}
+            {!smallScreen && <Divider orientation='vertical' flexItem />}
+            <Container
+              maxWidth='md'
+              className={smallScreen ? "" : styles.minorContainer}
+            >
               <FormGroup>
                 <FormControl fullWidth>
                   <TextField
@@ -274,8 +339,8 @@ const Bookform2 = () => {
                   <Typography>Rating</Typography>
                   <Rating
                     name='rating'
-                    value={parseFloat(rating)}
-                    precision={0.5}
+                    value={rating}
+                    precision={1}
                     onChange={onChange}
                   />
                   <Typography>Add a description</Typography>
@@ -292,12 +357,14 @@ const Bookform2 = () => {
               </Container>
 
               <CardActions>
-                <Button onClick={onAutofill} color='primary'>
-                  Autofill
-                </Button>
-                <Button onClick={handleClose} color='primary'>
+                <Tooltip title='Search google and fetch the first result'>
+                  <Button onClick={onAutofill} color='primary'>
+                    Autofill
+                  </Button>
+                </Tooltip>
+                {/*<Button onClick={handleClose} color='primary'>
                   Cancel
-                </Button>
+            </Button>*/}
                 <Button onClick={clear} color='primary'>
                   Clear
                 </Button>
@@ -306,7 +373,7 @@ const Bookform2 = () => {
                 </Button>
               </CardActions>
             </Container>
-          </Container>
+          </Box>
         </Collapse>
       </CardContent>
     </Card>

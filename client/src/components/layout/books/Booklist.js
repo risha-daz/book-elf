@@ -45,32 +45,36 @@ const Booklist = () => {
     );
   }
   return (
-    <Fragment>
+    <Container className={classes.cardGrid} maxWidth='md'>
       {books !== null && !loading ? (
-        <Container className={classes.cardGrid} maxWidth='md'>
+        <Fragment>
           <Bookfilter />
 
           <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Bookform2 />
-            </Grid>
-            {filter !== null
-              ? filter.map((book) => (
-                  <Grid item key={book._id} xs={12}>
-                    <BookItem book={book} />
-                  </Grid>
-                ))
-              : books.map((book) => (
+            {filter !== null ? (
+              filter.map((book) => (
+                <Grid item key={book._id} xs={12}>
+                  <BookItem book={book} />
+                </Grid>
+              ))
+            ) : (
+              <Fragment>
+                <Grid item xs={12}>
+                  <Bookform2 />
+                </Grid>
+                {books.map((book) => (
                   <Grid item key={book._id} xs={12}>
                     <BookItem book={book} />
                   </Grid>
                 ))}
+              </Fragment>
+            )}
           </Grid>
-        </Container>
+        </Fragment>
       ) : (
         <Spinner />
       )}
-    </Fragment>
+    </Container>
   );
 };
 

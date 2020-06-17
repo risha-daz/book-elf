@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../../../context/auth/authContext";
 import AlertContext from "../../../context/alert/alertContext";
+import { TextField, FormGroup, InputLabel } from "@material-ui/core";
 const Login = (props) => {
   const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
@@ -44,29 +45,28 @@ const Login = (props) => {
         Account <span className='text-primary'> Login</span>{" "}
       </h1>
       <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label htmlFor='email'>Email</label>
-          <input
+        <FormGroup>
+          <InputLabel htmlFor='email'>Email</InputLabel>
+          <TextField
             type='email'
             name='email'
-            placeholder='Email...'
             value={email}
             onChange={onChange}
             required
+            variant='filled'
           />
-        </div>
-        <div className='form-group'>
-          <label htmlFor='password'>Password</label>
-          <input
+        </FormGroup>
+        <FormGroup>
+          <InputLabel htmlFor='password'>Password</InputLabel>
+          <TextField
             type='password'
             name='password'
-            placeholder='Password...'
             value={password}
             onChange={onChange}
             required
+            variant='filled'
           />
-        </div>
-
+        </FormGroup>
         <input
           type='submit'
           value='Login'

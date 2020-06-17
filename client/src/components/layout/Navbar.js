@@ -1,12 +1,48 @@
-import React, { useContext, Fragment } from "react";
+import React, { useContext, Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import BookElf from "../../book-elf.svg";
+import { ReactComponent as MyIcon } from "../../ic_system_icon_24px2.svg";
 import AuthContext from "../../context/auth/authContext";
 import BookContext from "../../context/book/bookContext";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Avatar,
+  IconButton,
+  Box,
+  Button,
+  Icon,
+  Breadcrumbs,
+} from "@material-ui/core";
+import Settings from "./Settings";
 
-const Navbar = ({ title, icon }) => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  LinkColor: {
+    textColor: "#ffffff",
+    textEmphasisColor: "#eeeeee",
+  },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
+}));
+
+const Navbar = ({ title }) => {
+  const classes = useStyles();
   const authContext = useContext(AuthContext);
   const bookContext = useContext(BookContext);
+
   const { user, isAuthenticated, logout } = authContext;
   const onLogout = () => {
     logout();
@@ -14,47 +50,45 @@ const Navbar = ({ title, icon }) => {
   };
   const notGuest = (
     <Fragment>
-      {/*<li>        <Link to='/about'>About Us</Link> |      </li>*/}
-      <li>Welcome {user && user.name + "!  "} </li>
-      <li>
-        <a href='#!' onClick={onLogout}>
-          <i className='fas fa-sign-out-alt'></i>
-          <span className='hide-sm'> Logout </span>
-        </a>
-      </li>
+      Welcome {user && user.name + "!  "} <Settings />
     </Fragment>
   );
   const guest = (
-    <Fragment>
-      <li>
-        <Link to='/about'>About Us</Link> |
-      </li>
-      <li>
-        <Link to='/register'>Register</Link>|
-      </li>
-      <li>
-        <Link to='/login'>Login</Link>
-      </li>
-    </Fragment>
+    <Breadcrumbs>
+      <Link to='/about'>About Us</Link>
+      <Link to='/register' color='inherit'>
+        Register
+      </Link>
+      <Link to='/login'>Login</Link>
+    </Breadcrumbs>
   );
   return (
-    <div className='navbar bg-primary'>
-      <h1>
-        <Link to='/'>
-          <i className={icon} /> {title}
-        </Link>
-      </h1>
-      <ul>{isAuthenticated ? notGuest : guest}</ul>
-    </div>
+    <AppBar position='static' className={classes.appBar}>
+      <Toolbar>
+        <IconButton
+          edge='start'
+          className={classes.menuButton}
+          color='inherit'
+          aria-label='menu'
+        >
+          <Link to='/'>
+            <img src={BookElf} style={{ height: "40px", width: "40px" }} />
+          </Link>
+        </IconButton>
+
+        <Typography variant='h5' className={classes.title}>
+          {title}
+        </Typography>
+        <Box>{isAuthenticated ? notGuest : guest}</Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
-  icon: PropTypes.string,
 };
 Navbar.defaultProps = {
-  title: "Book Keeper",
-  icon: "fas fa-book",
+  title: "BookElf",
 };
 export default Navbar;

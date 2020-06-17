@@ -35,8 +35,8 @@ const BookState = (props) => {
       const res = await axios.get("/api/books");
       dispatch({ type: GET_BOOKS, payload: res.data });
     } catch (err) {
-      console.log(err.response.data.msg);
-      dispatch({ type: BOOK_ERROR, payload: err.response.data.msg });
+      console.log(err.response);
+      dispatch({ type: BOOK_ERROR, payload: err.response });
     }
   };
 
@@ -44,7 +44,7 @@ const BookState = (props) => {
   const addBook = async (book) => {
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     };
 
@@ -60,7 +60,7 @@ const BookState = (props) => {
   const updateBook = async (book) => {
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
       },
     };
 
@@ -89,6 +89,26 @@ const BookState = (props) => {
     }
   };
 
+  //Add Image
+  const uploadImage = async (file) => {
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    try {
+      const res = await axios.post("/api/imageuploads", file, config);
+      console.log(res.data.cover);
+      return res.data.cover;
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
+  const updateImage = () => {
+    console.log("object");
+  };
+
   //Clear books
   const clearBooks = () => {
     dispatch({ type: CLEAR_BOOKS });
@@ -100,7 +120,6 @@ const BookState = (props) => {
   };
   //clear current
   const clearCurrent = () => {
-    console.log("from");
     dispatch({ type: CLEAR_CURRENT });
   };
 
@@ -128,14 +147,15 @@ const BookState = (props) => {
         const desc = res.data.items[0].volumeInfo.description || "";
         const tit = res.data.items[0].volumeInfo.title || "";
         const rat = res.data.items[0].volumeInfo.averageRating || 0;
-
-        return { author, desc, tit, rat };
+        const thumb = res.data.items[0].volumeInfo.imageLinks.thumbnail || "";
+        return { author, desc, tit, rat, thumb };
       } catch (err) {
         return {
           author: "not found",
           desc: "not found",
           tit: "not found",
           rat: 1,
+          thumb: "",
         };
       }
     } catch (err) {
@@ -173,6 +193,8 @@ const BookState = (props) => {
         setBookpage,
         clearBookpage,
         autofill,
+        uploadImage,
+        updateImage,
       }}
     >
       {props.children}

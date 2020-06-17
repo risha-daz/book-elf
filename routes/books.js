@@ -5,31 +5,6 @@ const Book = require("../models/Book");
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
-const multer = require("multer");
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
-    cb(null, true);
-  } else {
-    cb(new Error("Unsupported file type"), false);
-  }
-};
-
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 15,
-  },
-  fileFilter: fileFilter,
-});
 // @route   GET ./api/books/
 // @desc    Get books
 // @access  private
@@ -50,19 +25,13 @@ router.get("/", auth, async (req, res) => {
 // @access  private
 router.post(
   "/",
-  [
-    auth,
-    upload.any(),
-    [check("title", "Please enter a title").not().isEmpty()],
-  ],
+  [auth, [check("title", "Please enter a title").not().isEmpty()]],
   async (req, res) => {
-    console.log(req.file);
-    const cover = req.file.filename;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { title, author, genre, read, description, rating } = req.body;
+    const { title, author, genre, read, description, rating, cover } = req.body;
     try {
       const newBook = new Book({
         user: req.currentUser.id,
@@ -87,9 +56,8 @@ router.post(
 // @route   PUT ./api/books/:id
 // @desc    update a book
 // @access  private
-router.put("/:id", [auth, upload.single("coverimage")], async (req, res) => {
-  const cover = req.file;
-  const { title, author, genre, read, description, rating } = req.body;
+router.put("/:id", auth, async (req, res) => {
+  const { title, author, genre, read, description, rating, cover } = req.body;
   console.log(req.body);
   let updates = {};
   if (title) updates.title = title;
@@ -98,7 +66,7 @@ router.put("/:id", [auth, upload.single("coverimage")], async (req, res) => {
   if (description) updates.description = description;
   if (rating) updates.rating = rating;
   if (read.toString()) updates.read = read;
-  if (cover) updates.cover = cover.filename;
+  if (cover) updates.cover = cover;
 
   try {
     let book = await Book.findById(req.params.id);
