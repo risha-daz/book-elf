@@ -81,7 +81,6 @@ const Bookform2 = () => {
       read: "false",
       description: "",
       rating: 1,
-      image: null,
     });
   };
 
@@ -137,8 +136,7 @@ const Bookform2 = () => {
     let formData = new FormData();
     formData.set("coverimage", e.target.files[0]);
     const coverurl = await bookContext.uploadImage(formData);
-    console.log(coverurl);
-    setFile(`uploads/${coverurl}`);
+    setFile(coverurl);
   };
 
   const onAutofill = async (e) => {
@@ -246,7 +244,7 @@ const Bookform2 = () => {
                 onChange={imgUploaded}
               />
               <label htmlFor='cover-upload'>
-                <Button variant='contained' color='primary'>
+                <Button variant='contained' color='primary' component='span'>
                   Upload
                 </Button>
               </label>

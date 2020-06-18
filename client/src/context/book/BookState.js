@@ -98,8 +98,8 @@ const BookState = (props) => {
     };
     try {
       const res = await axios.post("/api/imageuploads", file, config);
-      console.log(res.data.cover);
-      return res.data.cover;
+      console.log(res.data.url);
+      return res.data.url;
     } catch (err) {
       console.log(err.response);
     }

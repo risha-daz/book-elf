@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { check, validationResult } = require("express-validator");
 const https = require("https");
-
+const dotenv = require("dotenv");
 // @route   GET ./api/google/
 // @desc    register a user
 // @access  public
@@ -19,7 +19,7 @@ router.post(
 
     https
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${req.body.title}&orderBy=relevance&maxResults=1&key=AIzaSyAnX8lmJFGwnUIp0ouA1rlyWNpv95sQLjI`,
+        `https://www.googleapis.com/books/v1/volumes?q=${req.body.title}&orderBy=relevance&maxResults=1&key=${process.env.GOOGLE_API_KEY}`,
         (resp) => {
           let data = "";
 
