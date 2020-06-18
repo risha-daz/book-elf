@@ -50,7 +50,10 @@ const Navbar = ({ title }) => {
   };
   const notGuest = (
     <Fragment>
-      Welcome {user && user.name + "!  "} <Settings />
+      <Box display={{ xs: "none", sm: "inline" }}>
+        Welcome {user && user.name + "!  "}{" "}
+      </Box>
+      <Settings />
     </Fragment>
   );
   const guest = (
@@ -79,6 +82,7 @@ const Navbar = ({ title }) => {
         <Typography variant='h5' className={classes.title}>
           {title}
         </Typography>
+
         <Box>{isAuthenticated ? notGuest : guest}</Box>
       </Toolbar>
     </AppBar>
