@@ -20,13 +20,13 @@ app.use("/api/imageuploads", require("./routes/imageuploads"));
 app.use("/api/social", require("./routes/social"));
 
 //static folder for uploads
-app.use(express.static(path.resolve(__dirname, "uploads")));
+app.use("/uploads", express.static("uploads"));
 
 //Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   //Set static folder
   app.use(express.static("client/build"));
-
+  app.use(express.static(path.join(__dirname, "uploads")));
   app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   );
